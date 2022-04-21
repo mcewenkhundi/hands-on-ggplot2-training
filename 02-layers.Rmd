@@ -52,12 +52,12 @@ ggplot(data, aes(date, close, color = currency)) +
 ```
 
 ```{r area-fill}
-ggplot(data, aes(date, close, color = currency)) +
+ggplot(data, aes(date, close, color = currency, group = currency)) +
   geom_area(aes(fill = currency), alpha = .5, position = "fill")
 ```
 
 ```{r area-fill-no-exp}
-ggplot(data, aes(date, close, color = currency)) +
+ggplot(data, aes(date, close, color = currency, group = currency)) +
   geom_area(aes(fill = currency), alpha = .5, position = "fill") +
   coord_cartesian(expand = FALSE)
 ```
@@ -190,13 +190,13 @@ ggplot(data, aes(date, currency, fill = close)) +
 You can directly add smoothed conditional means:
 
 ```{r stats-smooth2}
-ggplot(data, aes(date, close, color = currency)) +
+ggplot(data, aes(date, close, color = currency, group = currency)) +
   geom_point(size = .1) +
   stat_smooth() 
 ```
 
 ```{r stats-smooth2-again}
-ggplot(data, aes(date, close, color = currency)) +
+ggplot(data, aes(date, close, color = currency, group = currency)) +
   geom_point(size = .1) +
   stat_smooth() 
 ```
@@ -206,7 +206,7 @@ By default this adds a LOESS (locally weighted scatter plot smoothing) or a GAM 
 You can specify the fitting method and the formula:
 
 ```{r stats-smooth-polynom}
-ggplot(data, aes(date, close, color = currency)) +
+ggplot(data, aes(date, close, color = currency, group = currency)) +
   geom_point(size = .1) +
   stat_smooth(method = "lm", formula = y ~ x + I(x^2) +  I(x^3) + I(x^4))
 ```

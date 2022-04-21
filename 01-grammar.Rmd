@@ -117,8 +117,16 @@ Furthermore, it helps readers to understand from which package a function is imp
 
 * Import the data set on Chicago weather data:<br>https://raw.githubusercontent.com/z3tt/ggplot-courses/master/data/chicago-nmmaps.csv
 * Inspect the data.
+```{r chicago_weather}
+data_weather_chicago <- readr::read_csv("https://raw.githubusercontent.com/z3tt/ggplot-courses/master/data/chicago-nmmaps.csv")
 
----
+data_weather_chicago
+
+tibble::glimpse(data_weather_chicago)
+
+summary(data_weather_chicago)
+```
+
 
 ## The Grammar of Graphics
 
@@ -235,6 +243,29 @@ chic <- readr::read_csv(
   + What's the problem? How could you fix it?
 * **Bonus:** Turn the scatter plot, colored by season, into a line plot.
   + What's the problem? How could you fix it?
+```{r chic_weatherplot}
+
+ggplot(chic, aes(date, temp, color = season)) +
+  geom_point()
+
+```
+```{r chic_weatherplotyear}
+ggplot(chic, aes(date, temp, color = year)) +
+  geom_point()
+
+ggplot(chic, aes(date, temp, color = factor(year))) +
+  geom_point()
+
+```
+```{r chic_weatherplot}
+
+ggplot(chic, aes(date, temp, color = season)) +
+  geom_line()
+
+ggplot(chic, aes(date, temp, color = season, group = year)) +
+  geom_line()
+
+```
 
 
 ## Saving a `ggplot`
